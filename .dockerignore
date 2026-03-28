@@ -1,0 +1,16 @@
+.git
+.github
+node_modules
+vendor
+/public/build
+/public/hot
+/storage/*.key
+/storage/pail
+.env
+.env.backup
+.env.production
+npm-debug.log
+yarn-error.log
+*.md
+.phpunit.cache
+.phpunit.result.cache
