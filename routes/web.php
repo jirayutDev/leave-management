@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ExportController;
@@ -14,6 +15,7 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/auth/google', [LoginController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
 // Protected routes
 Route::middleware('auth')->group(function () {
@@ -43,4 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::get('export', [ExportController::class, 'showForm'])->name('export.form');
     Route::post('export/excel', [ExportController::class, 'exportExcel'])->name('export.excel');
     Route::post('export/csv', [ExportController::class, 'exportCsv'])->name('export.csv');
+
+    // Admin management
+    Route::resource('admins', AdminController::class)->only(['index', 'create', 'store', 'destroy']);
 });

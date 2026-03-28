@@ -264,7 +264,25 @@
         <a href="{{ route('employees.index') }}" class="nav-link {{ request()->routeIs('employees.*') ? 'active' : '' }}">
             <i class="bi bi-people"></i>พนักงาน
         </a>
+        <a href="{{ route('admins.index') }}" class="nav-link {{ request()->routeIs('admins.*') ? 'active' : '' }}">
+            <i class="bi bi-shield-lock"></i>จัดการ Admin
+        </a>
     </nav>
+
+    <div style="padding:.75rem;border-top:1px solid rgba(255,255,255,.07);">
+        <div class="d-flex align-items-center gap-2 px-2 py-1 mb-2" style="color:#94a3b8;font-size:.8rem;">
+            <i class="bi bi-person-circle" style="font-size:1rem;"></i>
+            <span class="text-truncate">{{ auth()->user()?->name }}</span>
+        </div>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="btn w-100 text-start d-flex align-items-center gap-2"
+                style="background:rgba(255,255,255,.06);color:#94a3b8;font-size:.875rem;font-weight:500;border-radius:8px;padding:.5rem .85rem;border:none;">
+                <i class="bi bi-box-arrow-right" style="font-size:1rem;width:18px;flex-shrink:0;"></i>
+                ออกจากระบบ
+            </button>
+        </form>
+    </div>
 </aside>
 
 <div class="main-wrap" id="mainWrap">
